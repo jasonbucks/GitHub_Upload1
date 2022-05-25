@@ -38,7 +38,7 @@ print(f"The total loan amounts are ${total_loan_amounts}.")
 # YOUR CODE HERE!
 
 average_loan_amount = total_loan_amounts / number_of_loans
-print(f"The average loan amount is ${round(average_loan_amount, 2)}")
+print(f"The average loan amount is ${average_loan_amount:.2f}")
 
 """Part 2: Analyze Loan Data.
 
@@ -79,7 +79,7 @@ print(f"\nPart 2 Results: ")
 
 future_value = loan.get("future_value")
 remaining_months = loan.get("remaining_months")
-print(f"Future value of the loan is {future_value} and there are {remaining_months} months until maturity.")
+print(f"Future value of the loan is ${future_value} and there are {remaining_months} months until maturity.")
 
 # @TODO: Use the formula for Present Value to calculate a "fair value" of the loan.
 # Use a minimum required return of 20% as the discount rate.
@@ -90,7 +90,7 @@ print(f"Future value of the loan is {future_value} and there are {remaining_mont
 
 discount_rate = 0.20
 present_value = future_value / (1 + discount_rate/12)**remaining_months
-print(f"The discounted present value of the loan is ${present_value: .2f}")
+print(f"The discounted present value of the loan is ${present_value:.2f}")
 
 # If Present Value represents what the loan is really worth, does it make sense to buy the loan at its cost?
 # @TODO: Write a conditional statement (an if-else statement) to decide if the present value represents the loan's fair value.
@@ -99,7 +99,7 @@ print(f"The discounted present value of the loan is ${present_value: .2f}")
 # YOUR CODE HERE!
 
 loan_price = loan.get("loan_price")
-print(f"The loan price is {loan_price}")
+print(f"The loan price is ${loan_price}")
 if present_value >= loan_price:
     print("This loan is worth at least the cost to buy it.")
 else:
@@ -143,7 +143,7 @@ def calculate_present_value(future_value, remaining_months, annual_discount_rate
 
 annual_discount_rate = 0.20
 present_value = calculate_present_value(new_loan["future_value"], new_loan["remaining_months"], annual_discount_rate)
-print(f"The present value of the loan is: {present_value: .2f}")
+print(f"The present value of the loan is: ${present_value:.2f}")
 
 
 """Part 4: Conditionally filter lists of loans.
@@ -226,6 +226,7 @@ output_path = Path("inexpensive_loans.csv")
 # and each row of `loan.values()` from the `inexpensive_loans` list.
 # YOUR CODE HERE!
 
+print("Writing the data to a CSV file...")
 with open(output_path, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=",")
     csvwriter.writerow(header)
